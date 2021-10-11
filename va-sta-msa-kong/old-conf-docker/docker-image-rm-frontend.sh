@@ -1,0 +1,1 @@
+docker image rm conf-docker_frontend

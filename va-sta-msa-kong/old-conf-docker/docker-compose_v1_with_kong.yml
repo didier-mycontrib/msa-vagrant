@@ -1,0 +1,114 @@
+version: '3'
+# with docker-compose 2.1 depends-on with condition like service_healthy
+# since docker-compose 3 depends-on with no more condition
+# since version 3 , needs to ajust healthcheck/interval,timeout,retries
+
+networks:
+   mynetwork:
+      driver: bridge
+   kong-net:
+      driver: bridge
+      
+services:
+
+  ###################
+  # kong-database
+  ###################
+  kong-database:
+    image: postgres:9.6
+    container_name: kong-database
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      POSTGRES_USER: kong
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: kong
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "kong"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      
+  #######################################
+  # Kong database migration (initialisation)
+  #######################################
+  kong-migration:
+    image: kong/kong-gateway:2.5.0.0-alpine
+    command: "kong migrations bootstrap"
+    networks:
+      - kong-net
+    restart: on-failure
+    environment:
+      KONG_PASSWORD: kong
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_PASSWORD: kong
+    links:
+      - kong-database
+    depends_on:
+      - kong-database    
+      
+  #######################################
+  # kong-gateway : The API Gateway
+  #######################################
+  kong-gateway:
+    image: kong/kong-gateway:2.5.0.0-alpine
+    restart: always
+    container_name: kong-gateway
+    networks:
+      - kong-net
+      - mynetwork
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_PASSWORD: kong
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+      KONG_ADMIN_GUI_URL: http://xyz.mycompany.fun:8002
+    depends_on:
+      - kong-migration
+      - kong-database
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://kong:8001"]
+      interval: 20s
+      timeout: 20s
+      retries: 10
+    ports:
+      - "8001:8001"
+      - "8000:8000"
+      - "8443:8443"
+      - "8002:8002"
+
+#mysql-db:
+#    image: xyz/devise-db
+#    ports:
+#      - 3306:3306
+#    networks:
+#      mynetwork:
+#        aliases:
+#         - devise.db.host
+#         - devise.db.service
+
+  backend-api:
+    build : ./backend-api
+#    image: xyz/devise-api
+    container_name: backend-api
+    environment:
+      PORT : 8282
+    networks:
+      mynetwork:
+        aliases:
+          - backend.api.host
+          - backend.api.service
+    ports:
+      - "8282:8282"
+ 
+ 
