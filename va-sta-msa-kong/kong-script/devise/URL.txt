@@ -1,0 +1,3 @@
+curl http://xyz.mycompany.fun:8000/devise-api/public/devise
+
+curl http://xyz.mycompany.fun:8000/ng-bs4-app/index.html

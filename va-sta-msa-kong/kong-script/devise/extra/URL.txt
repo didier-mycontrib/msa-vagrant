@@ -1,0 +1,8 @@
+valid URL with key-auth:
+==============
+curl http://xyz.mycompany.fun:8000/devise-api/public/devise --header "apikey: consumer1-key"
+curl http://xyz.mycompany.fun:8000/devise-api/public/devise?apiKey=consumer1-key
+
+invalid URL with key-auth:
+==============
+curl http://xyz.mycompany.fun:8000/devise-api/public/devise
