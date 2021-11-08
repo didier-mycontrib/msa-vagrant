@@ -1,0 +1,9 @@
+invalid URL with oauth2:
+==============
+curl http://xyz.mycompany.fun:8000/devise-api/public/devise
+--->  {"error":"invalid_request","error_description":"The access token is missing"}
+
+valid URL with oauth2:
+==============
+curl -i -H "Authorization: Bearer BWhku0x1zbp0mFSPaufoLbsunGSw5iwE" http://xyz.mycompany.fun:8000/devise-api/public/devise
+

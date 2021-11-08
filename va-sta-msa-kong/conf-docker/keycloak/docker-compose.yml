@@ -1,0 +1,26 @@
+version: '3.4'
+# with docker-compose 2.1 depends-on with condition like service_healthy
+# since docker-compose 3 depends-on with no more condition
+# since version 3 , needs to ajust healthcheck/interval,timeout,retries
+# healthcheck/start_period depuis v4.3
+
+networks:
+  mynetwork:
+    external: true
+    
+services:
+      
+  my-keycloak:
+    image: jboss/keycloak:latest
+    container_name : my-keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+      mynetwork: 
+        aliases:
+          - my-keycloak      
+ 
+ 

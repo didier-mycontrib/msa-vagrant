@@ -1,0 +1,29 @@
+version: '3.4'
+#NB: -port: host_port:container_port
+#NB: dans future V2 , améliorer via volumes et sauvegardes
+
+networks:
+  mynetwork:
+    external: true
+      
+services:
+
+  ###################
+  # mongoDB server
+  # url: mongodb://root:root@mongoDB_or_localhost:27017/
+  ###################
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    networks:
+      mynetwork:
+        aliases:
+          - mongoDB.server.host
+          - mongoDB.host
+          - mongoDB

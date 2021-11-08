@@ -1,13 +1,5 @@
 version: '3.4'
-# with docker-compose 2.1 depends-on with condition like service_healthy
-# since docker-compose 3 depends-on with no more condition
-# since version 3 , needs to ajust healthcheck/interval,timeout,retries
-# healthcheck/start_period depuis v4.3
-
-#  extra_hosts:
-#      - "host.docker.internal:host-gateway"
-# is docker-compose equivalent to --add-host=host.docker.internal:host-gateway
-# and (on linux since v 20.10) it enable docker container to access host as host.docker.internal
+#NB: -port: host_port:container_port
 
 networks:
   kong-net:
@@ -60,6 +52,8 @@ services:
       
   #######################################
   # kong-gateway : The API Gateway
+  #  KONG_PROXY_LISTEN: 0.0.0.0:8000, 0.0.0.0:8443 ssl works but KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443 not working !!!!???
+  #  without certificates , need --insecure of curl (self signed certificates by default)  
   #######################################
   kong-gateway:
     image: kong:latest
@@ -78,9 +72,15 @@ services:
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_ADMIN_ERROR_LOG: /dev/stderr
-      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_PROXY_LISTEN: 0.0.0.0:8000, 0.0.0.0:8443 ssl
       KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
-      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+      KONG_SSL: "on"
+      # ssl config
+      #KONG_SSL_CERT: /certs/certificate.crt
+      #KONG_SSL_CERT_KEY: /certs/certificate.key
+      #KONG_ADMIN_SSL_CERT: /certs/certificate.crt
+      #KONG_ADMIN_SSL_CERT_KEY: /certs/certificate.key
     depends_on:
       - kong-migration
       - kong-database
@@ -94,6 +94,9 @@ services:
       - "8000:8000"
       - "8443:8443"
       - "8444:8444"
+    #volumes:
+     # - ./certs:/certs
+    
       
   #######################################
   # Konga database prepare

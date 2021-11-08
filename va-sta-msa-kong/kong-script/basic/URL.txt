@@ -1,0 +1,8 @@
+http://xyz.mycompany.fun:8000/ip
+curl http://localhost:8000/ip
+
+curl https://localhost:8443/ip
+---> curl: (60) SSL certificate problem: self signed certificate
+
+curl --insecure https://localhost:8443/ip
+curl --insecure -v https://localhost:8443/ip
