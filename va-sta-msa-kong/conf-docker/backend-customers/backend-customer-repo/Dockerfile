@@ -16,8 +16,8 @@ RUN npm install
 COPY .   .
 
 #setting ENV-VARIABLE
-ENV PORT=8282
+ENV PORT=8231
+ENV MONGODB_URL=mongodb://root:root@mongoDB.host:27017
 
-EXPOSE 8282
-#CMD [ "npm", "start" ]
-CMD [ "npm", "run" , "startNoDB" ]
+EXPOSE 8231
+CMD [ "npm", "start" ]

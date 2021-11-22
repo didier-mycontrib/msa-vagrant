@@ -1,0 +1,5 @@
+curl http://xyz.mycompany.fun:8000/session-api/public-session
+curl http://xyz.mycompany.fun:8000/customer-api/customer
+curl http://xyz.mycompany.fun:8000/reservation-api/reservation
+
+curl http://xyz.mycompany.fun:8000/resa-app/index.html

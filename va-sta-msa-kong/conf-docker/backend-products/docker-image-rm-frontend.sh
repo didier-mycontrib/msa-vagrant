@@ -1,0 +1,1 @@
+docker image rm backend-products_backend-product-repo

@@ -1,0 +1,1 @@
+docker image rm frontend-resa_my-frontend-resa

@@ -1,5 +1,5 @@
 FROM node:16
-# this new image will be create from parent image = node:8 (stable)
+# this new image will be create from parent image = node:16 (stable)
 
 # Create app directory inside docker image
 WORKDIR /usr/src/app
@@ -16,8 +16,8 @@ RUN npm install
 COPY .   .
 
 #setting ENV-VARIABLE
-ENV PORT=8282
+ENV PORT=8230
+ENV MONGODB_URL=mongodb://root:root@mongoDB.host:27017
 
-EXPOSE 8282
-#CMD [ "npm", "start" ]
-CMD [ "npm", "run" , "startNoDB" ]
+EXPOSE 8230
+CMD [ "npm", "start" ]
