@@ -33,18 +33,32 @@ curl -i -X POST \
   
 curl -i -X POST \
   --url http://${HOSTNAME}:8001/services \
-  --data 'name=customer-service' \
-  --data 'url=http://backend-customer-repo.api.host:8231/customer-api'
-
+  --data 'name=public-customer-service' \
+  --data 'url=http://backend-customer-repo.api.host:8231/customer-api/public'
   
-#adding a route to access customer-service  
+  
 curl -i -X POST \
-  --url http://${HOSTNAME}:8001/services/customer-service/routes \
-  --data 'name=customer-api-route' \
+  --url http://${HOSTNAME}:8001/services \
+  --data 'name=private-customer-service' \
+  --data 'url=http://backend-customer-repo.api.host:8231/customer-api/private'
+
+#adding a route to access public-customer-service  
+curl -i -X POST \
+  --url http://${HOSTNAME}:8001/services/public-customer-service/routes \
+  --data 'name=public-customer-api-route' \
   --data 'hosts[]=xyz.mycompany.fun' \
   --data 'hosts[]=d2f2021' \
   --data 'hosts[]=localhost' \
-  --data 'paths[]=/customer-api'
+  --data 'paths[]=/customer-api/public'
+  
+#adding a route to access private-customer-service  
+curl -i -X POST \
+  --url http://${HOSTNAME}:8001/services/private-customer-service/routes \
+  --data 'name=private-customer-api-route' \
+  --data 'hosts[]=xyz.mycompany.fun' \
+  --data 'hosts[]=d2f2021' \
+  --data 'hosts[]=localhost' \
+  --data 'paths[]=/customer-api/private'
 
 #register existing upstream reservation-service in kong
 

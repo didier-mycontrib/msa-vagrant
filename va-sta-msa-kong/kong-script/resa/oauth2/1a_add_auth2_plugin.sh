@@ -6,7 +6,7 @@
 export HOSTNAME=`hostname`
 
 curl -i -X POST \
-  --url ${HOSTNAME}:8001/services/devise-service/plugins/ \
+  --url ${HOSTNAME}:8001/services/private-customer-service/plugins/ \
   --data "name=oauth2" \
   --data "config.provision_key=my_not_generated_provision_key" \
   --data "config.scopes=read" \

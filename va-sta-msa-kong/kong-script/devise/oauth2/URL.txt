@@ -1,3 +1,4 @@
+
 invalid URL with oauth2:
 ==============
 curl http://xyz.mycompany.fun:8000/devise-api/public/devise
@@ -6,4 +7,10 @@ curl http://xyz.mycompany.fun:8000/devise-api/public/devise
 valid URL with oauth2:
 ==============
 curl -i -H "Authorization: Bearer BWhku0x1zbp0mFSPaufoLbsunGSw5iwE" http://xyz.mycompany.fun:8000/devise-api/public/devise
+
+***************************
+documentation et exemples sur plugin oauth2 de kong:
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+https://docs.konghq.com/hub/kong-inc/oauth2/
 
