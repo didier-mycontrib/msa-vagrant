@@ -4,7 +4,7 @@
 export HOSTNAME=`hostname`
 
 #register existing upstream service in kong
-#NB: curl http://${HOTNAME}:8230/session-api/public-session return session list
+#NB: curl http://${HOTNAME}:8230/session-api/public/session return session list
 #backend-api container has backend-product-repo.api.host network-alias in mynetwork 
 #NB:  since docker v 20.10 on linux, host.docker.internal is an alias for host of docker containers
 # backend-product-repo.api.host:8230 means another services on same host
@@ -12,22 +12,37 @@ export HOSTNAME=`hostname`
 
 curl -i -X POST \
   --url http://${HOSTNAME}:8001/services \
-  --data 'name=session-service' \
-  --data 'url=http://backend-product-repo.api.host:8230/session-api'
+  --data 'name=public-session-service' \
+  --data 'url=http://backend-product-repo.api.host:8230/session-api/public'
 
   
-#adding a route to access session service  (product)
+#adding a route to access public-session-service  (product)
 curl -i -X POST \
-  --url http://${HOSTNAME}:8001/services/session-service/routes \
-  --data 'name=session-api-route' \
+  --url http://${HOSTNAME}:8001/services/public-session-service/routes \
+  --data 'name=public-session-api-route' \
   --data 'hosts[]=xyz.mycompany.fun' \
   --data 'hosts[]=d2f2021' \
   --data 'hosts[]=localhost' \
-  --data 'paths[]=/session-api' 
-# curl http://xyz.mycompany.fun:8000/session-api/public-session
-# curl http://d2f2021:8000/session-api/public-session
-# curl http://localhost:8000/session-api/public-session
+  --data 'paths[]=/session-api/public' 
+# curl http://xyz.mycompany.fun:8000/session-api/public/session
+# curl http://d2f2021:8000/session-api/public/session
+# curl http://localhost:8000/session-api/public/session
   
+  # private-session-service
+curl -i -X POST \
+  --url http://${HOSTNAME}:8001/services \
+  --data 'name=private-session-service' \
+  --data 'url=http://backend-product-repo.api.host:8230/session-api/private'
+
+  
+#adding a route to access private-session-service  (product)
+curl -i -X POST \
+  --url http://${HOSTNAME}:8001/services/private-session-service/routes \
+  --data 'name=private-session-api-route' \
+  --data 'hosts[]=xyz.mycompany.fun' \
+  --data 'hosts[]=d2f2021' \
+  --data 'hosts[]=localhost' \
+  --data 'paths[]=/session-api/private' 
   
 #register existing upstream customer-service in kong
   
@@ -60,22 +75,40 @@ curl -i -X POST \
   --data 'hosts[]=localhost' \
   --data 'paths[]=/customer-api/private'
 
-#register existing upstream reservation-service in kong
+#register existing upstream public-reservation-service in kong
 
 curl -i -X POST \
   --url http://${HOSTNAME}:8001/services \
-  --data 'name=reservation-service' \
-  --data 'url=http://backend-resa.api.host:8232/reservation-api'
+  --data 'name=public-reservation-service' \
+  --data 'url=http://backend-resa.api.host:8232/reservation-api/public'
 
   
-#adding a route to access resa-service  
+#adding a route to access public-reservation-service  
 curl -i -X POST \
-  --url http://${HOSTNAME}:8001/services/reservation-service/routes \
-  --data 'name=reservation-api-route' \
+  --url http://${HOSTNAME}:8001/services/public-reservation-service/routes \
+  --data 'name=public-reservation-api-route' \
   --data 'hosts[]=xyz.mycompany.fun' \
   --data 'hosts[]=d2f2021' \
   --data 'hosts[]=localhost' \
-  --data 'paths[]=/reservation-api'  
+  --data 'paths[]=/reservation-api/public'
+
+#register existing upstream private-reservation-service in kong
+
+curl -i -X POST \
+  --url http://${HOSTNAME}:8001/services \
+  --data 'name=private-reservation-service' \
+  --data 'url=http://backend-resa.api.host:8232/reservation-api/private'
+
+  
+#adding a route to access private-reservation-service  
+curl -i -X POST \
+  --url http://${HOSTNAME}:8001/services/private-reservation-service/routes \
+  --data 'name=private-reservation-api-route' \
+  --data 'hosts[]=xyz.mycompany.fun' \
+  --data 'hosts[]=d2f2021' \
+  --data 'hosts[]=localhost' \
+  --data 'paths[]=/reservation-api/private'    
+  
   
   
 #register existing upstream frontend (to download) in kong  

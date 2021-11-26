@@ -3,3 +3,9 @@ curl http://xyz.mycompany.fun:8000/customer-api/private/customer
 curl http://xyz.mycompany.fun:8000/reservation-api/private/reservation
 
 curl http://xyz.mycompany.fun:8000/resa-app/index.html
+
+***************************
+documentation et exemples sur plugin oauth2 de kong:
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+https://docs.konghq.com/hub/kong-inc/oauth2/

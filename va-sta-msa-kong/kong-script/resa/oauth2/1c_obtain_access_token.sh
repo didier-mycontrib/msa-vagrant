@@ -22,7 +22,7 @@ curl -i -X POST \
   --url https://${HOSTNAME}:8443/customer-api/private/oauth2/token \
   --data "client_id=CLIENT_ID_RESA" \
   --data "client_secret=CLIENT_SECRET_RESA" \
-  --data "scope=read"  \
+  --data "scope=read write delete"  \
   --data "grant_type=password" \
   --data "authenticated_userid=jeanBon" \
   --data "provision_key=my_not_generated_provision_key" --insecure
