@@ -7,5 +7,18 @@ curl http://xyz.mycompany.fun:8000/resa-app/index.html
 ***************************
 documentation et exemples sur plugin oauth2 de kong:
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-
 https://docs.konghq.com/hub/kong-inc/oauth2/
+
+
+dans /vagrant/conf-docker/backend-products
+docker-compose down
+docker-compose up --build &
+===============================================
+docker container ls
+dans /vagrant/kong-script/resa
+curl http://localhost:8230/session-api/private/reinit
+curl http://localhost:8230/session-api/public/session
+sh delete-kong-service.sh
+curl http://xyz.mycompany.fun:8000/session-api/public/session
+sh init-kong-service.sh
+curl http://xyz.mycompany.fun:8000/session-api/public/session
