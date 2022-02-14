@@ -6,7 +6,7 @@
 export HOSTNAME=`hostname`
 
 curl -i -X POST \
-  --url ${HOSTNAME}:8001/services/private-customer-service/plugins/ \
+  --url ${HOSTNAME}:8001/services/private-customer-api-service/plugins/ \
   --data "name=oauth2" \
   --data "config.provision_key=my_not_generated_provision_key" \
   --data "config.scopes=read" \
@@ -21,7 +21,7 @@ curl -i -X POST \
   --data "config.global_credentials=true"
   
 curl -i -X POST \
-  --url ${HOSTNAME}:8001/services/private-reservation-service/plugins/ \
+  --url ${HOSTNAME}:8001/services/private-reservation-api-service/plugins/ \
   --data "name=oauth2" \
   --data "config.provision_key=my_not_generated_provision_key" \
   --data "config.scopes=read" \

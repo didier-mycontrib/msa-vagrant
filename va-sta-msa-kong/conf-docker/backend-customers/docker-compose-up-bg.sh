@@ -1,1 +1,1 @@
-docker-compose up --build &
+nohup docker-compose up --build &

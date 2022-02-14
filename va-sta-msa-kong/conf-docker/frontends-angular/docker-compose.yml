@@ -10,15 +10,15 @@ networks:
     
 services:
       
-  my-frontend-resa:
-  #  image: xyz/my-frontend-resa
-    build : ./my-frontend-resa
-    container_name : my-frontend-resa
+  my-frontends:
+  #  image: xyz/my-frontends
+    build : ./my-frontends
+    container_name : my-frontends
     ports:
       - "8989:8989"
     networks:
       mynetwork: 
         aliases:
-          - my-frontend-resa      
+          - my-frontends      
  
  

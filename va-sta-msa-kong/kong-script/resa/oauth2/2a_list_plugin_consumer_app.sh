@@ -6,7 +6,7 @@
 export HOSTNAME=`hostname`
 
 
-curl http://${HOSTNAME}:8001/services/private-customer-service/plugins | jq -r '.'
+curl http://${HOSTNAME}:8001/services/private-customer-api-service/plugins | jq -r '.'
 
 curl http://${HOSTNAME}:8001/consumers | jq -r '.'
 

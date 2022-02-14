@@ -37,7 +37,9 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 8230, host: 8230
   config.vm.network "forwarded_port", guest: 8231, host: 8231
   config.vm.network "forwarded_port", guest: 8232, host: 8232
+  config.vm.network "forwarded_port", guest: 8998, host: 8998
   #8000 (8000 en interne) pour des access via kong-gateway
+  #8998 (8998 en interne) pour des access à jenkins console (:8080 inside docker)
   #8989 (8989 en interne) pour des access directs au frontend ng-bs4-app ou resa-app angular
   #1337 (1337 en interne) pour des access à konga (open source kong-gui)
   #8080 (8080 en interne) pour des access à keycloak (open source oauth2/oidc server)
@@ -106,6 +108,7 @@ Vagrant.configure("2") do |config|
   # kafka et keycloak pas systématiquement chargé et démmarré par un peu lourd en consommation RAM
   #config.vm.provision :docker_compose
   config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/kong-api-gateway/docker-compose.yml", rebuild: true, run: "always"
+  config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/jenkins-cicd/docker-compose.yml", rebuild: true, run: "always"
   #config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/keycloak/docker-compose.yml", rebuild: true, run: "always"
   #config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/kafka/docker-compose.yml", rebuild: true, run: "always"
   config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/mongo/docker-compose.yml", rebuild: true, run: "always"
@@ -114,7 +117,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/backend-products/docker-compose.yml", rebuild: true, run: "always"
   config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/backend-resa/docker-compose.yml", rebuild: true, run: "always"
   #config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/frontend1/docker-compose.yml", rebuild: true, run: "always"
-  config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/frontend-resa/docker-compose.yml", rebuild: true, run: "always"
+  config.vm.provision :docker_compose, yml: "/vagrant/conf-docker/frontends-angular/docker-compose.yml", rebuild: true, run: "always"
   # "kong-script/devise/init-kong-service.sh"  #a lancer manuellement apres que docker bien en place
   # "kong-script/resa/init-kong-service.sh"  #a lancer manuellement apres que docker bien en place
 

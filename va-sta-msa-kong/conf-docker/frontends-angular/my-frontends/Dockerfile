@@ -1,5 +1,5 @@
 FROM node:16
-# this new image will be create from parent image = node:8 (stable)
+# this new image will be create from parent image = node:16 (stable)
 
 # Create app directory inside docker image
 WORKDIR /usr/src/app
@@ -12,7 +12,7 @@ COPY  package*.json  ./
 RUN npm install
 
 
-# Bundle app source (src, dist, frontend-content)
+# Bundle app source (src, dist, frontends-content)
 COPY .   .
 
 #setting ENV-VARIABLE

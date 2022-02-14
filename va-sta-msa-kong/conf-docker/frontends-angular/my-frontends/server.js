@@ -24,7 +24,7 @@ var redirectDownloadToAngularIndexPage=
        fileName=ngAppPrefix + "/index.html";//main angular page  
     //console.log("fileName="+fileName);	   
     res.sendFile(path.join(__dirname, 
-       relativeTo__dirname_prefix  +'frontend-content' + fileName));
+       relativeTo__dirname_prefix  +'frontends-content' + fileName));
    }
 
 //NB all angular routes should begin with "ngr-" 
@@ -33,7 +33,7 @@ var redirectDownloadToAngularIndexPage=
 app.get('*/ngr-:r', redirectDownloadToAngularIndexPage);
 
 
-app.use( "/" , express.static(__dirname+"/frontend-content"));
+app.use( "/" , express.static(__dirname+"/frontends-content"));
 //NB le repertoire frontend-content doit normalement
 //comporter une copie de l'application angular 
 //generée par ng build --prod (ex: my-app ou ng-bs4-app)

@@ -8,7 +8,7 @@ valid URL with oauth2:
 ==============
 curl -i -H "Authorization: Bearer OOF117LfqCPxpXANJvC000fS9WQk8M8t" http://xyz.mycompany.fun:8000/customer-api/private/customer
 
-curl -i -H "Authorization: Bearer OOF117LfqCPxpXANJvC000fS9WQk8M8t" http://xyz.mycompany.fun:8000/reservation-api/private/reservation
+curl -i -H "Authorization: Bearer U0d7yOClYSex2s4X1GjHDXwqTyo0cdf2" http://xyz.mycompany.fun:8000/reservation-api/private/reservation
 
 https://github.com/Kong/kong/issues/1488
 https://docs.konghq.com/hub/kong-inc/request-transformer/ ????

@@ -1,0 +1,186 @@
+START of restart-docker-compose
+DOCKER_COMPOSE_DOWN
+Removing backend-customer-repo ... 
+[1A[2KRemoving backend-customer-repo ... [32mdone[0m[1BNetwork mynetwork is external, skipping
+DOCKER_COMPOSE_UP
+END of restart-docker-compose
+Building backend-customer-repo
+Step 1/9 : FROM node:16
+ ---> 5964aa70c11d
+Step 2/9 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> b227fa784859
+Step 3/9 : COPY  package*.json  ./
+ ---> Using cache
+ ---> e083ea85fd9d
+Step 4/9 : RUN npm install
+ ---> Using cache
+ ---> 5a340bf51b74
+Step 5/9 : COPY .   .
+ ---> 35fd3973b2f1
+Step 6/9 : ENV PORT=8231
+ ---> Running in dcdf8cf65cc9
+Removing intermediate container dcdf8cf65cc9
+ ---> 64ff0a02407c
+Step 7/9 : ENV MONGODB_URL=mongodb://root:root@mongoDB.host:27017
+ ---> Running in 4082993cf6a8
+Removing intermediate container 4082993cf6a8
+ ---> 1646e6040e0f
+Step 8/9 : EXPOSE 8231
+ ---> Running in a468fe966918
+Removing intermediate container a468fe966918
+ ---> 83ea623935be
+Step 9/9 : CMD [ "npm", "start" ]
+ ---> Running in 22f88e6e2f1c
+Removing intermediate container 22f88e6e2f1c
+ ---> 473639f14437
+
+Successfully built 473639f14437
+Successfully tagged backend-customers_backend-customer-repo:latest
+Creating backend-customer-repo ... 
+[1A[2KCreating backend-customer-repo ... [32mdone[0m[1BAttaching to backend-customer-repo
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m > customer_repo@1.0.0 start
+[36mbackend-customer-repo    |[0m > node server.js
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m mongoDbUrl=mongodb://root:root@mongoDB.host:27017
+[36mbackend-customer-repo    |[0m http://localhost:8231
+[36mbackend-customer-repo    |[0m Connected correctly to mongodb database
+Stopping backend-customer-repo ... 
+[1A[2KStopping backend-customer-repo ... [32mdone[0m[1BGracefully stopping... (press Ctrl+C again to force)
+Building backend-customer-repo
+Step 1/9 : FROM node:16
+ ---> 5964aa70c11d
+Step 2/9 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> b227fa784859
+Step 3/9 : COPY  package*.json  ./
+ ---> Using cache
+ ---> e083ea85fd9d
+Step 4/9 : RUN npm install
+ ---> Using cache
+ ---> 5a340bf51b74
+Step 5/9 : COPY .   .
+ ---> 721dde342277
+Step 6/9 : ENV PORT=8231
+ ---> Running in 3d1b776e612e
+Removing intermediate container 3d1b776e612e
+ ---> be70d421e8a6
+Step 7/9 : ENV MONGODB_URL=mongodb://root:root@mongoDB.host:27017
+ ---> Running in 7243cba283c1
+Removing intermediate container 7243cba283c1
+ ---> ce524d491a98
+Step 8/9 : EXPOSE 8231
+ ---> Running in e8f9ca6812cd
+Removing intermediate container e8f9ca6812cd
+ ---> d8cbdb8d5106
+Step 9/9 : CMD [ "npm", "start" ]
+ ---> Running in 1ddafa81e969
+Removing intermediate container 1ddafa81e969
+ ---> b9f37a5e8390
+
+Successfully built b9f37a5e8390
+Successfully tagged backend-customers_backend-customer-repo:latest
+Creating backend-customer-repo ... 
+[1A[2KCreating backend-customer-repo ... [32mdone[0m[1BAttaching to backend-customer-repo
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m > customer_repo@1.0.0 start
+[36mbackend-customer-repo    |[0m > node server.js
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m mongoDbUrl=mongodb://root:root@mongoDB.host:27017
+[36mbackend-customer-repo    |[0m http://localhost:8231
+[36mbackend-customer-repo    |[0m Connected correctly to mongodb database
+Building backend-customer-repo
+Step 1/9 : FROM node:16
+ ---> 5964aa70c11d
+Step 2/9 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> b227fa784859
+Step 3/9 : COPY  package*.json  ./
+ ---> Using cache
+ ---> e083ea85fd9d
+Step 4/9 : RUN npm install
+ ---> Using cache
+ ---> 5a340bf51b74
+Step 5/9 : COPY .   .
+ ---> 4fc9f9b21e84
+Step 6/9 : ENV PORT=8231
+ ---> Running in 5fb20af36325
+Removing intermediate container 5fb20af36325
+ ---> 59dee38cad76
+Step 7/9 : ENV MONGODB_URL=mongodb://root:root@mongoDB.host:27017
+ ---> Running in a564b8914bcf
+Removing intermediate container a564b8914bcf
+ ---> 469a974664aa
+Step 8/9 : EXPOSE 8231
+ ---> Running in 0aed941d4057
+Removing intermediate container 0aed941d4057
+ ---> 77c75adf0a1d
+Step 9/9 : CMD [ "npm", "start" ]
+ ---> Running in b69a2d77daa2
+Removing intermediate container b69a2d77daa2
+ ---> 3855eb6795df
+
+Successfully built 3855eb6795df
+Successfully tagged backend-customers_backend-customer-repo:latest
+Creating backend-customer-repo ... 
+[1A[2KCreating backend-customer-repo ... [32mdone[0m[1BAttaching to backend-customer-repo
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m > customer_repo@1.0.0 start
+[36mbackend-customer-repo    |[0m > node server.js
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m mongoDbUrl=mongodb://root:root@mongoDB.host:27017
+[36mbackend-customer-repo    |[0m http://localhost:8231
+[36mbackend-customer-repo    |[0m Connected correctly to mongodb database
+[36mbackend-customer-repo    |[0m npm ERR! path /usr/src/app
+[36mbackend-customer-repo    |[0m npm ERR! command failed
+[36mbackend-customer-repo    |[0m npm ERR! signal SIGTERM
+[36mbackend-customer-repo    |[0m npm ERR! command sh -c node server.js
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m npm ERR! A complete log of this run can be found in:
+[36mbackend-customer-repo    |[0m npm ERR!     /root/.npm/_logs/2022-02-10T17_50_27_455Z-debug.log
+[36mbackend-customer-repo exited with code 1
+[0mBuilding backend-customer-repo
+Step 1/9 : FROM node:16
+ ---> 5964aa70c11d
+Step 2/9 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> b227fa784859
+Step 3/9 : COPY  package*.json  ./
+ ---> Using cache
+ ---> e083ea85fd9d
+Step 4/9 : RUN npm install
+ ---> Using cache
+ ---> 5a340bf51b74
+Step 5/9 : COPY .   .
+ ---> b39968aa6ea2
+Step 6/9 : ENV PORT=8231
+ ---> Running in f1ea8ed5bedc
+Removing intermediate container f1ea8ed5bedc
+ ---> e469790517fd
+Step 7/9 : ENV MONGODB_URL=mongodb://root:root@mongoDB.host:27017
+ ---> Running in 3da6afe31a3f
+Removing intermediate container 3da6afe31a3f
+ ---> de4535eb305d
+Step 8/9 : EXPOSE 8231
+ ---> Running in 71a5e93e5572
+Removing intermediate container 71a5e93e5572
+ ---> 3d9ef56fc1b1
+Step 9/9 : CMD [ "npm", "start" ]
+ ---> Running in f9311e529736
+Removing intermediate container f9311e529736
+ ---> 6061b562d8cd
+
+Successfully built 6061b562d8cd
+Successfully tagged backend-customers_backend-customer-repo:latest
+Creating backend-customer-repo ... 
+[1A[2KCreating backend-customer-repo ... [32mdone[0m[1BAttaching to backend-customer-repo
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m > customer_repo@1.0.0 start
+[36mbackend-customer-repo    |[0m > node server.js
+[36mbackend-customer-repo    |[0m 
+[36mbackend-customer-repo    |[0m mongoDbUrl=mongodb://root:root@mongoDB.host:27017
+[36mbackend-customer-repo    |[0m http://localhost:8231
+[36mbackend-customer-repo    |[0m Connected correctly to mongodb database
+Stopping backend-customer-repo ... 
+[1A[2KStopping backend-customer-repo ... [32mdone[0m[1BGracefully stopping... (press Ctrl+C again to force)
