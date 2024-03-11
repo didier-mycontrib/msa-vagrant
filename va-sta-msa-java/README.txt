@@ -4,9 +4,9 @@ docker --version
 git --version
 ==========
 cd /vagrant/git-repo
-git clone https://github.com/didier-mycontrib/jee-spring-app-demo
-cd jee-spring-app-demo/my-native-app
-cd  /vagrant/git-repo/jee-spring-app-demo/my-native-app
+git clone https://github.com/didier-mycontrib/spring6plus
+cd spring6plus/my-native-app
+cd  /vagrant/git-repo/spring6plus/my-native-app
 mvn spring-boot:build-image
 ----
 free
@@ -16,5 +16,5 @@ http://localhost:8181/my-native-app sur machine hote
 -----
 free
 
-différence d'utilisation mémoire : 150928 - 120084 = environ 30000 = environ 30Mo
+différence d'utilisation mémoire : environ 40Mo (contre 120Mo sans l'option -Pnative )
 
