@@ -22,7 +22,9 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. 
   # NOTE: This will enable public access to the opened port
   config.vm.network "forwarded_port", guest: 8181, host: 8181
+  config.vm.network "forwarded_port", guest: 9393, host: 9393
   #8080 (8080 en interne) pour des access à une appli java
+  #9393 (9393 en interne) pour des access au dashborad de spring-cloud-data-flow
  
 
   # Create a forwarded port mapping which allows access to a specific port
