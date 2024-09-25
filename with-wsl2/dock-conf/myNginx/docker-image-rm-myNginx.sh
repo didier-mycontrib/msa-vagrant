@@ -1,0 +1,1 @@
+docker image rm mynginx_mynginx

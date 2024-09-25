@@ -1,0 +1,1 @@
+ln -s /mnt/c/tp/local-git-mycontrib-repositories/msa-vagrant/with-wsl2 with-wsl2

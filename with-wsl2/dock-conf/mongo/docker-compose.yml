@@ -1,0 +1,31 @@
+
+networks:
+  mynetwork:
+    #external: true
+    driver: bridge
+      
+services:
+
+  ###################
+  # mongoDB server
+  # url: mongodb://root:root@mongoDB_or_localhost:27017/
+  #NB: some CPU are not compatible with mongo 5 and 6 (AVX is required)--> using mongo 4.4
+  ###################
+  mongo:
+    image: mongo:4.4
+    restart: always
+    container_name: mongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    volumes:
+      - /var/my-docker-volumes/mongo/data/db:/data/db
+      - /var/my-docker-volumes/mongo/data/configdb:/data/configdb
+    networks:
+      mynetwork:
+        aliases:
+          - mongoDB.server.host
+          - mongoDB.host
+          - mongoDB

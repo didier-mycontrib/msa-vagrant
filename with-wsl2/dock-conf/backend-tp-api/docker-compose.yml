@@ -1,0 +1,27 @@
+
+networks:
+  mynetwork:
+    #external: true
+    driver: bridge
+    
+services:
+      
+  tp-api:
+    build : ../../tp-api
+#   image: xyz/backend-tp-api
+    restart: always
+    container_name: backend-tp-api
+    environment:
+      PORT : 8233
+      MONGODB_URL: mongodb://root:root@mongoDB.host:27017
+    networks:
+      mynetwork:
+        aliases:
+          - backend-tp-api.api.host
+          - backend-tp-api.api.service
+    ports:
+      - "8233:8233"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+      

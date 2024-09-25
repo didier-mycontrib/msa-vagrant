@@ -1,0 +1,3 @@
+http://localhost:8233 (direct node backend )
+et
+http://localhost:80  (via nginx)

@@ -1,0 +1,27 @@
+
+networks:
+  mynetwork:
+    #external: true
+    driver: bridge
+      
+services:
+
+  ###################
+  # # myNginx (for angular frontends and reverse-proxy config)
+  ###################
+  mynginx:
+    #image: nginx:1.24
+    build : ./my-nginx
+    restart: always
+    container_name: myNginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/certs:/certs  
+    networks:
+      mynetwork:
+        aliases:
+          - myNginx.server.host
+          - myNginx.host
+          - myNginx

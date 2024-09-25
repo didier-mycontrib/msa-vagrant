@@ -1,0 +1,34 @@
+version: '3.4'
+#NB: -port: host_port:container_port
+#NB: dans future V2 , améliorer via volumes et sauvegardes
+
+networks:
+  mynetwork:
+    external: true
+      
+services:
+
+  ###################
+  # gitlab-ce server (on-premise)
+  ###################
+  mygitlab:
+    image: gitlab/gitlab-ce:16.7.6-ce.0
+    restart: always
+    container_name: mygitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['initial_root_password']='&a!z4xZz!'
+    ports:
+      - 80:80
+      - 443:443
+      - 22:22
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    networks:
+      mynetwork:
+        aliases:
+          - gitlab.server.host
+          - gitlab.host
+          - gitlab

@@ -8,5 +8,15 @@ sudo curl -SL https://github.com/docker/compose/releases/download/v2.24.3/docker
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
-
+---------
 https://dataflow.spring.io/docs/installation/local/docker/
+-------
+cd /vagrant/conf-docker/s_c_data_flow
+sh docker-compose-up-bg.sh
+#sh docker-compose-down.sh
+-----------------
+http://localhost:9393/dashboard
+---------------
+#default linux HOST_MOUNT_PATH=/home/cnb/scdf
+export HOST_MOUNT_PATH=/vagrant/s_c_data_flow/myapps
+-----------
