@@ -1,0 +1,7 @@
+{
+  "name": "my-app",
+  "version": "0.0.0",
+  "scripts": {
+    "start-ssr": "node server/server.mjs"
+  }
+}

@@ -1,0 +1,86 @@
+
+networks:
+  mynetwork:
+    #external: true
+    driver: bridge
+      
+services:
+
+  ###################
+  # # myNginx (for angular frontends and reverse-proxy config)
+  ###################
+  mynginx:
+    #image: nginx:1.24
+    build : ../myNginx/my-nginx
+    restart: always
+    container_name: myNginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/certs:/certs  
+    networks:
+      mynetwork:
+        aliases:
+          - myNginx.server.host
+          - myNginx.host
+          - myNginx
+############
+#### my-app
+############" 
+  my-app:
+    build : ../../my-app
+    restart: always
+    container_name: frontend-my-app
+    networks:
+      mynetwork:
+        aliases:
+          - my-app.frontend
+    ports:
+      - "4000:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+##################
+#### backend-tp-api
+################"          
+  tp-api:
+    build : ../../tp-api
+#   image: xyz/backend-tp-api
+    restart: always
+    container_name: backend-tp-api
+    environment:
+      PORT : 8233
+      MONGODB_URL: mongodb://root:root@mongoDB.host:27017
+    networks:
+      mynetwork:
+        aliases:
+          - backend-tp-api.api.host
+          - backend-tp-api.api.service
+    ports:
+      - "8233:8233"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  ###################
+  # mongoDB server
+  # url: mongodb://root:root@mongoDB_or_localhost:27017/
+  #NB: some CPU are not compatible with mongo 5 and 6 (AVX is required)--> using mongo 4.4
+  ###################
+  mongo:
+    image: mongo:4.4
+    restart: always
+    container_name: mongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    volumes:
+      - /var/my-docker-volumes/mongo/data/db:/data/db
+      - /var/my-docker-volumes/mongo/data/configdb:/data/configdb
+    networks:
+      mynetwork:
+        aliases:
+          - mongoDB.server.host
+          - mongoDB.host
+          - mongoDB          

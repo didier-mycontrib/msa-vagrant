@@ -1,11 +1,13 @@
 
-networks:
-  mynetwork:
-    #external: true
-    driver: bridge
+include:
+  - ../mynetwork/docker-compose.yml
+  
     
 services:
       
+ ##################
+ #### backend-tp-api (nodejs rest api)
+ ################
   tp-api:
     build : ../../tp-api
 #   image: xyz/backend-tp-api

@@ -1,0 +1,320 @@
+#0 building with "default" instance using docker driver
+
+#1 [my-app internal] load build definition from Dockerfile
+#1 transferring dockerfile: 506B 0.0s done
+#1 DONE 0.1s
+
+#2 [tp-api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 548B 0.1s done
+#2 DONE 0.1s
+
+#3 [mynginx internal] load build definition from Dockerfile
+#3 transferring dockerfile: 481B 0.0s done
+#3 DONE 0.1s
+
+#4 [tp-api internal] load metadata for docker.io/library/node:18
+#4 ...
+
+#5 [mynginx internal] load metadata for docker.io/library/nginx:1.24
+#5 DONE 0.9s
+
+#4 [tp-api internal] load metadata for docker.io/library/node:18
+#4 DONE 0.9s
+
+#6 [mynginx internal] load .dockerignore
+#6 transferring context: 2B 0.0s done
+#6 DONE 0.1s
+
+#7 [mynginx 1/3] FROM docker.io/library/nginx:1.24@sha256:f6daac2445b0ce70e64d77442ccf62839f3f1b4c24bf6746a857eff014e798c8
+#7 DONE 0.0s
+
+#8 [mynginx internal] load build context
+#8 transferring context: 3.11kB 0.0s done
+#8 DONE 0.1s
+
+#9 [my-app internal] load .dockerignore
+#9 transferring context: 2B 0.0s done
+#9 DONE 0.1s
+
+#10 [tp-api 1/4] FROM docker.io/library/node:18@sha256:f910225c96b0f77b0149f350a3184568a9ba6cddba2a7c7805cc125a50591605
+#10 DONE 0.0s
+
+#11 [tp-api internal] load .dockerignore
+#11 transferring context: 2B 0.1s done
+#11 DONE 0.1s
+
+#12 [mynginx 2/3] COPY index.html /usr/share/nginx/html
+#12 CACHED
+
+#13 [my-app internal] load build context
+#13 ...
+
+#14 [mynginx 3/3] COPY docker-nginx.conf /etc/nginx/conf.d/default.conf
+#14 DONE 0.1s
+
+#15 [mynginx] exporting to image
+#15 exporting layers 0.1s done
+#15 writing image sha256:182d8182727f55c27aca759fae2b9b6e638a34f591e9155b1f852f114e51da17 done
+#15 naming to docker.io/library/all-mynginx 0.0s done
+#15 DONE 0.1s
+
+#13 [my-app internal] load build context
+#13 transferring context: 6.37MB 0.3s done
+#13 DONE 0.4s
+
+#16 [mynginx] resolving provenance for metadata file
+#16 DONE 0.0s
+
+#17 [my-app 2/4] WORKDIR /usr/src/app
+#17 CACHED
+
+#18 [my-app 3/4] COPY  package*.json  ./
+#18 CACHED
+
+#19 [my-app 4/4] COPY .   .
+#19 CACHED
+
+#20 [my-app] exporting to image
+#20 exporting layers done
+#20 writing image sha256:42ba20b12607962170fc0317e7752194f449d7c6071f2246a390f952b86438b5 done
+#20 naming to docker.io/library/all-my-app done
+#20 DONE 0.0s
+
+#21 [tp-api internal] load build context
+#21 ...
+
+#22 [my-app] resolving provenance for metadata file
+#22 DONE 0.0s
+
+#21 [tp-api internal] load build context
+#21 transferring context: 14.89MB 5.4s
+#21 transferring context: 24.32MB 8.8s done
+#21 DONE 8.9s
+
+#17 [tp-api 2/4] WORKDIR /usr/src/app
+#17 CACHED
+
+#23 [tp-api 3/5] COPY  package*.json  ./
+#23 CACHED
+
+#24 [tp-api 4/5] RUN npm install
+#24 CACHED
+
+#25 [tp-api 5/5] COPY .   .
+#25 CACHED
+
+#26 [tp-api] exporting to image
+#26 exporting layers done
+#26 writing image sha256:634445b1fd2abeb0f2090bcbdaf90cbe5e0a2bc2b2c2519e21f595e9283d3b26 done
+#26 naming to docker.io/library/all-tp-api done
+#26 DONE 0.0s
+
+#27 [tp-api] resolving provenance for metadata file
+#27 DONE 0.0s
+ Network all_mynetwork  Creating
+ Network all_mynetwork  Created
+ Container backend-tp-api  Creating
+ Container myNginx  Creating
+ Container frontend-my-app  Creating
+ Container mongoDB  Creating
+ Container mongoDB  Created
+ Container myNginx  Created
+ Container backend-tp-api  Created
+ Container frontend-my-app  Created
+Attaching to backend-tp-api, frontend-my-app, mongoDB, myNginx
+myNginx          | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+myNginx          | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+myNginx          | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+myNginx          | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+myNginx          | 10-listen-on-ipv6-by-default.sh: info: /etc/nginx/conf.d/default.conf differs from the packaged version
+myNginx          | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+myNginx          | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+myNginx          | /docker-entrypoint.sh: Configuration complete; ready for start up
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: using the "epoll" event method
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: nginx/1.24.0
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: OS: Linux 5.15.153.1-microsoft-standard-WSL2
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker processes
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 28
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 29
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 30
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 31
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 32
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 33
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 34
+myNginx          | 2024/09/30 16:48:50 [notice] 1#1: start worker process 35
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.504+00:00"},"s":"I",  "c":"CONTROL",  "id":23285,   "ctx":"main","msg":"Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.520+00:00"},"s":"I",  "c":"NETWORK",  "id":4648601, "ctx":"main","msg":"Implicit TCP FastOpen unavailable. If TCP FastOpen is required, set tcpFastOpenServer, tcpFastOpenClient, and tcpFastOpenQueueSize."}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.523+00:00"},"s":"I",  "c":"STORAGE",  "id":4615611, "ctx":"initandlisten","msg":"MongoDB starting","attr":{"pid":1,"port":27017,"dbPath":"/data/db","architecture":"64-bit","host":"da11d1b942de"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.524+00:00"},"s":"I",  "c":"CONTROL",  "id":23403,   "ctx":"initandlisten","msg":"Build Info","attr":{"buildInfo":{"version":"4.4.29","gitVersion":"f4dda329a99811c707eb06d05ad023599f9be263","openSSLVersion":"OpenSSL 1.1.1f  31 Mar 2020","modules":[],"allocator":"tcmalloc","environment":{"distmod":"ubuntu2004","distarch":"x86_64","target_arch":"x86_64"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.524+00:00"},"s":"I",  "c":"CONTROL",  "id":51765,   "ctx":"initandlisten","msg":"Operating System","attr":{"os":{"name":"Ubuntu","version":"20.04"}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.524+00:00"},"s":"I",  "c":"CONTROL",  "id":21951,   "ctx":"initandlisten","msg":"Options set by command line","attr":{"options":{"net":{"bindIp":"*"},"security":{"authorization":"enabled"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.527+00:00"},"s":"I",  "c":"STORAGE",  "id":22270,   "ctx":"initandlisten","msg":"Storage engine to use detected by data files","attr":{"dbpath":"/data/db","storageEngine":"wiredTiger"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.527+00:00"},"s":"I",  "c":"STORAGE",  "id":22297,   "ctx":"initandlisten","msg":"Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem","tags":["startupWarnings"]}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:50.527+00:00"},"s":"I",  "c":"STORAGE",  "id":22315,   "ctx":"initandlisten","msg":"Opening WiredTiger","attr":{"config":"create,cache_size=3300M,session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(wait=0),verbose=[recovery_progress,checkpoint_progress,compact_progress],"}}
+backend-tp-api   | 
+backend-tp-api   | > tp-api@1.0.0 start
+backend-tp-api   | > node server.js
+backend-tp-api   | 
+frontend-my-app  | 
+frontend-my-app  | > my-app@0.0.0 start-ssr
+frontend-my-app  | > node server/server.mjs
+frontend-my-app  | 
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.166+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:166961][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 36 through 37"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.266+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:266359][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 37 through 37"}}
+frontend-my-app  | Node Express server listening on http://localhost:4000
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.357+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:357328][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Main recovery loop: starting at 36/16512 to 37/256"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.408+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:408384][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 36 through 37"}}
+backend-tp-api   | mongoDbUrl=mongodb://root:root@mongoDB.host:27017
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.442+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:442044][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 37 through 37"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.466+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:466883][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Set global recovery timestamp: (0, 0)"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.466+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:466978][1:0x7fbeba582cc0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Set global oldest timestamp: (0, 0)"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.472+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1727714931:472355][1:0x7fbeba582cc0], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 1, snapshot max: 1 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.492+00:00"},"s":"I",  "c":"STORAGE",  "id":4795906, "ctx":"initandlisten","msg":"WiredTiger opened","attr":{"durationMillis":965}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.492+00:00"},"s":"I",  "c":"RECOVERY", "id":23987,   "ctx":"initandlisten","msg":"WiredTiger recoveryTimestamp","attr":{"recoveryTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.504+00:00"},"s":"I",  "c":"STORAGE",  "id":22262,   "ctx":"initandlisten","msg":"Timestamp monitor starting"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.509+00:00"},"s":"W",  "c":"CONTROL",  "id":22178,   "ctx":"initandlisten","msg":"/sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'","tags":["startupWarnings"]}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.527+00:00"},"s":"I",  "c":"STORAGE",  "id":20536,   "ctx":"initandlisten","msg":"Flow Control is enabled on this deployment"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.540+00:00"},"s":"I",  "c":"FTDC",     "id":20625,   "ctx":"initandlisten","msg":"Initializing full-time diagnostic data capture","attr":{"dataDirectory":"/data/db/diagnostic.data"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.540+00:00"},"s":"I",  "c":"REPL",     "id":6015317, "ctx":"initandlisten","msg":"Setting new configuration state","attr":{"newState":"ConfigReplicationDisabled","oldState":"ConfigPreStart"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.543+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"/tmp/mongodb-27017.sock"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.543+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"0.0.0.0"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.543+00:00"},"s":"I",  "c":"NETWORK",  "id":23016,   "ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"off"}}
+backend-tp-api   | http://localhost:8233
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.655+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"172.21.0.4:35420","connectionId":1,"connectionCount":1}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.658+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn1","msg":"client metadata","attr":{"remote":"172.21.0.4:35420","client":"conn1","doc":{"driver":{"name":"nodejs|Mongoose","version":"5.3.0|7.1.0"},"platform":"Node.js v18.20.4, LE","os":{"name":"linux","architecture":"x64","version":"5.15.153.1-microsoft-standard-WSL2","type":"Linux"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.664+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"172.21.0.4:35432","connectionId":2,"connectionCount":2}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.667+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn2","msg":"client metadata","attr":{"remote":"172.21.0.4:35432","client":"conn2","doc":{"driver":{"name":"nodejs|Mongoose","version":"5.3.0|7.1.0"},"platform":"Node.js v18.20.4, LE","os":{"name":"linux","architecture":"x64","version":"5.15.153.1-microsoft-standard-WSL2","type":"Linux"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.681+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn2","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"172.21.0.4:35432","extraInfo":{}}}
+backend-tp-api   | Connected correctly to mongodb database
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.689+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"172.21.0.4:35438","connectionId":3,"connectionCount":3}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.690+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"172.21.0.4:35448","connectionId":4,"connectionCount":4}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.691+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn3","msg":"client metadata","attr":{"remote":"172.21.0.4:35438","client":"conn3","doc":{"driver":{"name":"nodejs|Mongoose","version":"5.3.0|7.1.0"},"platform":"Node.js v18.20.4, LE","os":{"name":"linux","architecture":"x64","version":"5.15.153.1-microsoft-standard-WSL2","type":"Linux"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.692+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn4","msg":"client metadata","attr":{"remote":"172.21.0.4:35448","client":"conn4","doc":{"driver":{"name":"nodejs|Mongoose","version":"5.3.0|7.1.0"},"platform":"Node.js v18.20.4, LE","os":{"name":"linux","architecture":"x64","version":"5.15.153.1-microsoft-standard-WSL2","type":"Linux"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.693+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn3","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"172.21.0.4:35438","extraInfo":{}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:48:51.695+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn4","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"172.21.0.4:35448","extraInfo":{}}}
+backend-tp-api   | wellKnownOpenidConfigUrl=https://www.d-defrance.fr/keycloak/realms/sandboxrealm/.well-known/openid-configuration response.status :  200
+backend-tp-api   | initPassportKeycloakBearerStrategy ok 
+mongoDB          | {"t":{"$date":"2024-09-30T16:49:02.167+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"172.21.0.4:46208","connectionId":5,"connectionCount":5}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:49:02.167+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn5","msg":"client metadata","attr":{"remote":"172.21.0.4:46208","client":"conn5","doc":{"driver":{"name":"nodejs|Mongoose","version":"5.3.0|7.1.0"},"platform":"Node.js v18.20.4, LE","os":{"name":"linux","architecture":"x64","version":"5.15.153.1-microsoft-standard-WSL2","type":"Linux"}}}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:49:51.509+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1727714991:509370][1:0x7fbeb3573700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 3, snapshot max: 3 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:50:51.537+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1727715051:537713][1:0x7fbeb3573700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 8, snapshot max: 8 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:51:51.565+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1727715111:565932][1:0x7fbeb3573700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 11, snapshot max: 11 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:52:51.594+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1727715171:594111][1:0x7fbeb3573700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 13, snapshot max: 13 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:53:51.619+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1727715231:619832][1:0x7fbeb3573700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 18, snapshot max: 18 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.675+00:00"},"s":"I",  "c":"CONTROL",  "id":23377,   "ctx":"SignalHandler","msg":"Received signal","attr":{"signal":15,"error":"Terminated"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.675+00:00"},"s":"I",  "c":"CONTROL",  "id":23378,   "ctx":"SignalHandler","msg":"Signal was sent by kill(2)","attr":{"pid":0,"uid":0}}
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.676+00:00"},"s":"I",  "c":"CONTROL",  "id":23381,   "ctx":"SignalHandler","msg":"will terminate after current cmd ends"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.676+00:00"},"s":"I",  "c":"REPL",     "id":4784900, "ctx":"SignalHandler","msg":"Stepping down the ReplicationCoordinator for shutdown","attr":{"waitTimeMillis":10000}}
+myNginx          | 2024/09/30 16:54:48 [notice] 31#31: gracefully shutting down
+myNginx          | 2024/09/30 16:54:48 [notice] 28#28: gracefully shutting down
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.681+00:00"},"s":"I",  "c":"COMMAND",  "id":4784901, "ctx":"SignalHandler","msg":"Shutting down the MirrorMaestro"}
+myNginx          | 2024/09/30 16:54:48 [notice] 34#34: gracefully shutting down
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.681+00:00"},"s":"I",  "c":"SHARDING", "id":4784902, "ctx":"SignalHandler","msg":"Shutting down the WaitForMajorityService"}
+myNginx          | 2024/09/30 16:54:48 [notice] 30#30: gracefully shutting down
+myNginx          | 2024/09/30 16:54:48 [notice] 32#32: gracefully shutting down
+myNginx          | 2024/09/30 16:54:48 [notice] 35#35: gracefully shutting down
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.683+00:00"},"s":"I",  "c":"CONTROL",  "id":4784903, "ctx":"SignalHandler","msg":"Shutting down the LogicalSessionCache"}
+myNginx          | 2024/09/30 16:54:48 [notice] 32#32: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.684+00:00"},"s":"I",  "c":"NETWORK",  "id":20562,   "ctx":"SignalHandler","msg":"Shutdown: going to close listening sockets"}
+myNginx          | 2024/09/30 16:54:48 [notice] 31#31: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.684+00:00"},"s":"I",  "c":"NETWORK",  "id":23017,   "ctx":"listener","msg":"removing socket file","attr":{"path":"/tmp/mongodb-27017.sock"}}
+myNginx          | 2024/09/30 16:54:48 [notice] 34#34: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"NETWORK",  "id":4784905, "ctx":"SignalHandler","msg":"Shutting down the global connection pool"}
+myNginx          | 2024/09/30 16:54:48 [notice] 28#28: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"STORAGE",  "id":4784906, "ctx":"SignalHandler","msg":"Shutting down the FlowControlTicketholder"}
+myNginx          | 2024/09/30 16:54:48 [notice] 30#30: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"-",        "id":20520,   "ctx":"SignalHandler","msg":"Stopping further Flow Control ticket acquisitions."}
+myNginx          | 2024/09/30 16:54:48 [notice] 29#29: gracefully shutting down
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"STORAGE",  "id":4784908, "ctx":"SignalHandler","msg":"Shutting down the PeriodicThreadToAbortExpiredTransactions"}
+myNginx          | 2024/09/30 16:54:48 [notice] 35#35: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"STORAGE",  "id":4784934, "ctx":"SignalHandler","msg":"Shutting down the PeriodicThreadToDecreaseSnapshotHistoryCachePressure"}
+myNginx          | 2024/09/30 16:54:48 [notice] 33#33: gracefully shutting down
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"REPL",     "id":4784909, "ctx":"SignalHandler","msg":"Shutting down the ReplicationCoordinator"}
+myNginx          | 2024/09/30 16:54:48 [notice] 29#29: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"SHARDING", "id":4784910, "ctx":"SignalHandler","msg":"Shutting down the ShardingInitializationMongoD"}
+myNginx          | 2024/09/30 16:54:48 [notice] 33#33: exiting
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"REPL",     "id":4784911, "ctx":"SignalHandler","msg":"Enqueuing the ReplicationStateTransitionLock for shutdown"}
+myNginx          | 2024/09/30 16:54:48 [notice] 34#34: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"-",        "id":4784912, "ctx":"SignalHandler","msg":"Killing all operations for shutdown"}
+myNginx          | 2024/09/30 16:54:48 [notice] 33#33: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"-",        "id":4695300, "ctx":"SignalHandler","msg":"Interrupted all currently running operations","attr":{"opsKilled":4}}
+myNginx          | 2024/09/30 16:54:48 [notice] 29#29: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"COMMAND",  "id":4784913, "ctx":"SignalHandler","msg":"Shutting down all open transactions"}
+myNginx          | 2024/09/30 16:54:48 [notice] 35#35: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"REPL",     "id":4784914, "ctx":"SignalHandler","msg":"Acquiring the ReplicationStateTransitionLock for shutdown"}
+myNginx          | 2024/09/30 16:54:48 [notice] 30#30: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"INDEX",    "id":4784915, "ctx":"SignalHandler","msg":"Shutting down the IndexBuildsCoordinator"}
+myNginx          | 2024/09/30 16:54:48 [notice] 32#32: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"REPL",     "id":4784916, "ctx":"SignalHandler","msg":"Reacquiring the ReplicationStateTransitionLock for shutdown"}
+myNginx          | 2024/09/30 16:54:48 [notice] 28#28: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"REPL",     "id":4784917, "ctx":"SignalHandler","msg":"Attempting to mark clean shutdown"}
+myNginx          | 2024/09/30 16:54:48 [notice] 31#31: exit
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"NETWORK",  "id":4784918, "ctx":"SignalHandler","msg":"Shutting down the ReplicaSetMonitor"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.685+00:00"},"s":"I",  "c":"SHARDING", "id":4784921, "ctx":"SignalHandler","msg":"Shutting down the MigrationUtilExecutor"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.686+00:00"},"s":"I",  "c":"STORAGE",  "id":4784927, "ctx":"SignalHandler","msg":"Shutting down the HealthLog"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.686+00:00"},"s":"I",  "c":"STORAGE",  "id":4784929, "ctx":"SignalHandler","msg":"Acquiring the global lock for shutdown"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.686+00:00"},"s":"I",  "c":"STORAGE",  "id":4784930, "ctx":"SignalHandler","msg":"Shutting down the storage engine"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.686+00:00"},"s":"I",  "c":"STORAGE",  "id":22320,   "ctx":"SignalHandler","msg":"Shutting down journal flusher thread"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22321,   "ctx":"SignalHandler","msg":"Finished shutting down journal flusher thread"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":20282,   "ctx":"SignalHandler","msg":"Deregistering all the collections"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22261,   "ctx":"SignalHandler","msg":"Timestamp monitor shutting down"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22317,   "ctx":"SignalHandler","msg":"WiredTigerKVEngine shutting down"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22318,   "ctx":"SignalHandler","msg":"Shutting down session sweeper thread"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22319,   "ctx":"SignalHandler","msg":"Finished shutting down session sweeper thread"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22322,   "ctx":"SignalHandler","msg":"Shutting down checkpoint thread"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":22323,   "ctx":"SignalHandler","msg":"Finished shutting down checkpoint thread"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.687+00:00"},"s":"I",  "c":"STORAGE",  "id":4795902, "ctx":"SignalHandler","msg":"Closing WiredTiger","attr":{"closeConfig":"leak_memory=true,"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.688+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"SignalHandler","msg":"WiredTiger message","attr":{"message":"[1727715288:688222][1:0x7fbeba581700], close_ckpt: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 21, snapshot max: 21 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 1089"}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.688+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn1","msg":"Connection ended","attr":{"remote":"172.21.0.4:35420","connectionId":1,"connectionCount":4}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.718+00:00"},"s":"I",  "c":"STORAGE",  "id":4795901, "ctx":"SignalHandler","msg":"WiredTiger closed","attr":{"durationMillis":31}}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.718+00:00"},"s":"I",  "c":"STORAGE",  "id":22279,   "ctx":"SignalHandler","msg":"shutdown: removing fs lock..."}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.718+00:00"},"s":"I",  "c":"-",        "id":4784931, "ctx":"SignalHandler","msg":"Dropping the scope cache for shutdown"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.718+00:00"},"s":"I",  "c":"FTDC",     "id":4784926, "ctx":"SignalHandler","msg":"Shutting down full-time data capture"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.718+00:00"},"s":"I",  "c":"FTDC",     "id":20626,   "ctx":"SignalHandler","msg":"Shutting down full-time diagnostic data capture"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.720+00:00"},"s":"I",  "c":"CONTROL",  "id":20565,   "ctx":"SignalHandler","msg":"Now exiting"}
+mongoDB          | {"t":{"$date":"2024-09-30T16:54:48.721+00:00"},"s":"I",  "c":"CONTROL",  "id":23138,   "ctx":"SignalHandler","msg":"Shutting down","attr":{"exitCode":0}}
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 34 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 29 (SIGIO) received
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 28 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 29 (SIGIO) received
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 29 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 29 (SIGIO) received
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 30 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 35 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 29 (SIGIO) received
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 33 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 31 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 29 (SIGIO) received
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: worker process 32 exited with code 0
+myNginx          | 2024/09/30 16:54:48 [notice] 1#1: exit
+frontend-my-app  | npm notice
+frontend-my-app  | npm notice New minor version of npm available! 10.7.0 -> 10.8.3
+frontend-my-app  | npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.8.3
+frontend-my-app  | npm notice To update run: npm install -g npm@10.8.3
+frontend-my-app  | npm notice
+backend-tp-api   | npm error path /usr/src/app
+frontend-my-app  | npm error path /usr/src/app
+backend-tp-api   | npm error command failed
+backend-tp-api   | npm error signal SIGTERM
+backend-tp-api   | npm error command sh -c node server.js
+frontend-my-app  | npm error command failed
+frontend-my-app  | npm error signal SIGTERM
+frontend-my-app  | npm error command sh -c node server/server.mjs
+backend-tp-api   | 
+backend-tp-api   | npm error A complete log of this run can be found in: /root/.npm/_logs/2024-09-30T16_48_50_486Z-debug-0.log
+frontend-my-app  | 
+frontend-my-app  | npm error A complete log of this run can be found in: /root/.npm/_logs/2024-09-30T16_48_50_486Z-debug-0.log
+[KmongoDB exited with code 0
+[KmyNginx exited with code 0
+[Kbackend-tp-api exited with code 1
+[Kfrontend-my-app exited with code 1

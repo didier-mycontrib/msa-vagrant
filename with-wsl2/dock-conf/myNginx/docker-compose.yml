@@ -1,13 +1,12 @@
 
-networks:
-  mynetwork:
-    #external: true
-    driver: bridge
+include:
+  - ../mynetwork/docker-compose.yml
+  
       
 services:
 
   ###################
-  # # myNginx (for angular frontends and reverse-proxy config)
+  # myNginx (Https server and reverse-proxy config)
   ###################
   mynginx:
     #image: nginx:1.24

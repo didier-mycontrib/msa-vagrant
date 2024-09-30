@@ -1,0 +1,13 @@
+{
+  "routes": [
+    "/ngr-basic",
+    "/ngr-basic/tva",
+    "/ngr-conversion",
+    "/ngr-demo",
+    "/ngr-devise",
+    "/ngr-login",
+    "/ngr-oauth2-login-out",
+    "/ngr-reservation",
+    "/ngr-welcome"
+  ]
+}

@@ -1,0 +1,24 @@
+
+include:
+  - ../mynetwork/docker-compose.yml
+  
+    
+services:
+   
+#########################################
+#### my-app (angular frontend app with ssr=
+#######################################""
+  my-app:
+    build : ../../my-app
+    restart: always
+    container_name: frontend-my-app
+    networks:
+      mynetwork:
+        aliases:
+          - my-app.frontend
+    ports:
+      - "4000:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+      
